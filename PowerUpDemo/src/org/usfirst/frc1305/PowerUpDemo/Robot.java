@@ -81,7 +81,7 @@ public class Robot extends TimedRobot {
         Constants.add("PL1C2", "R-90");
         Constants.add("PL1C3", "AUP");
         Constants.add("PL1C4", "P0.2");
-        Constants.add("PL1C5", "");
+        Constants.add("PL1C5", "I0.9");
         Constants.add("PL1C6", "");
         Constants.add("PL1C7", "");
         Constants.add("PL1C8", "");
