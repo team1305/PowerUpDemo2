@@ -47,7 +47,7 @@ public class NewAutoDriveReverse extends Command {
     protected void initialize() {
     	currPos = 0;
     	Robot.drive.resetEncoder();
-    	RobotMap.driveCANTalonLeftFront.reset();
+    	//RobotMap.driveCANTalonLeftFront.reset();
 
     }
 
