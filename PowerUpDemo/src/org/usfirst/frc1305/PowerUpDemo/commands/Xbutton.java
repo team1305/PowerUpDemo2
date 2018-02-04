@@ -11,6 +11,8 @@
 
 package org.usfirst.frc1305.PowerUpDemo.commands;
 import edu.wpi.first.wpilibj.command.Command;
+
+import org.usfirst.frc1305.PowerUpDemo.Constants;
 import org.usfirst.frc1305.PowerUpDemo.Robot;
 
 /**
@@ -42,6 +44,12 @@ public class Xbutton extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+    	double npower = Constants.getAsDouble("ElevatorStage2Speed");
+    	if (npower == 0) { // Could not find variable
+    		npower = 0.3;
+    	} 
+    	
+    	Robot.elevator.Stage2Power(0 - Math.abs(npower));    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -53,11 +61,13 @@ public class Xbutton extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+        Robot.elevator.Stage2Stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
+    	 end();
     }
 }

@@ -16,6 +16,7 @@ public class AutoCommands extends CommandGroup {
 	String m_gamedata;
 	double m_targetX;
 	boolean m_istarget;
+	char m_scale;
 	
     public AutoCommands(int commandtorun) {
         // Use requires() here to declare subsystem dependencies
@@ -29,12 +30,16 @@ public class AutoCommands extends CommandGroup {
 
 		String cpartner1 = Constants.getAsString("partner1"); // Drive, Switch or Scale
 		String cpartner2 = Constants.getAsString("partner2");
-   	    char m_scale = m_gamedata.charAt(1);
-		
+        if (m_gamedata.length() > 0) {
+		   m_scale = m_gamedata.charAt(1);
+        } else {
+        	m_scale = 'L';
+        }
+        
     	// commandtorun is 1, 2, 3, 4 - preset programs		 
-    	for (int ni=1; ni <= 10; ni++) {     			    	
-    		run_command(Constants.getAsString("P" + m_scale + Integer.toString(commandtorun) + "C" + Integer.toString(ni)));	 
-    	}    	   
+  //  	for (int ni=1; ni <= 10; ni++) {     			    	
+  //  		run_command(Constants.getAsString("P" + m_scale + Integer.toString(commandtorun) + "C" + Integer.toString(ni)));	 
+  //  	}    	   
     }
 
     public void run_command(String ccommand) {
@@ -113,12 +118,12 @@ public class AutoCommands extends CommandGroup {
     	   
        }
    	   
-    	
+ 	
     }
     
     protected void calc_distances() {
        double disttoswitch = 5;
-       
+/*       
        // Use Vision to calculate distance 
        m_drivedistance1 = 48;
        if (m_gamedata.charAt(1) == 'L') {
@@ -126,7 +131,7 @@ public class AutoCommands extends CommandGroup {
        } else {
            m_drivedistance2 = 48;    	   
        }
-
+*/
            	
     }
     
