@@ -60,10 +60,12 @@ public class Elevator extends Subsystem {
 		stage1R_encoder = new Encoder(0, 1, true);
 		stage2_encoder = new Encoder(0, 1, true);
 		stage1L_encoder.setPIDSourceType(PIDSourceType.kDisplacement);
+		//TODO: correct distance per pule
 		stage1L_encoder.setDistancePerPulse(0.00148688918);
 		stage1R_encoder.setDistancePerPulse(0.00148688918);
 		stage2_encoder.setDistancePerPulse(0.00148688918);
 		
+		//TODO: set P,I,and D values
 		elevatorHoldPointController = new PIDController(0, 0, 0, stage1L_encoder, stage1L);
 		
 		
@@ -162,8 +164,11 @@ public class Elevator extends Subsystem {
        return 0;
     }
     
-    public void setHightHoldDistance(double hight) {
-    	elevatorHoldPointController.setSetpoint(hight);
+    //used to set the high of the elevator using the pid
+    //TODO: setup ENUM for specific height
+    //Possible move pid directly to talon
+    public void setHightHoldDistance(double height) {
+    	elevatorHoldPointController.setSetpoint(height);
     }
     
     @Override
