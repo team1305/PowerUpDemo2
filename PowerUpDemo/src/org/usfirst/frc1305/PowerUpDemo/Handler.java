@@ -1,4 +1,4 @@
-package com.cruzsbrian.robolog;
+package org.usfirst.frc1305.PowerUpDemo;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.WebSocketListener;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketClose;

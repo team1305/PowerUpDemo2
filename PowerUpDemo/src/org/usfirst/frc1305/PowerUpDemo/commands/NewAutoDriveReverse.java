@@ -1,7 +1,7 @@
-package org.usfirst.frc1305.SteamBot.commands;
+package org.usfirst.frc1305.PowerUpDemo.commands;
 
-import org.usfirst.frc1305.SteamBot.Robot;
-import org.usfirst.frc1305.SteamBot.RobotMap;
+import org.usfirst.frc1305.PowerUpDemo.Robot;
+import org.usfirst.frc1305.PowerUpDemo.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
