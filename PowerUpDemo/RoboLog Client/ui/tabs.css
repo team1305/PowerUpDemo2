@@ -1,0 +1,102 @@
+div.toolbar {
+    flex: 0 1 auto;
+    border-bottom: 1px solid #ccc;
+    background-color: #f1f1f1;
+    z-index: 1001;
+}
+
+.toolbar-left {
+    float: left;
+    width: 20%;
+    display: block;
+    text-align: left;
+}
+
+.toolbar-right {
+    float: right;
+    width: 20%;
+    display: block;
+    text-align: right;
+}
+
+.toolbar-center {
+    width: 80%;
+    display: block;
+    text-align: center;
+}
+
+div.toolbar button {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 5px 16px;
+    transition: 0.2s;
+}
+
+div.toolbar button:hover {
+    background-color: #ddd;
+}
+
+div.toolbar button.active {
+    background-color: #ccc;
+}
+
+div.toolbar button#addpanel,button#removepanel {
+    float: right;
+}
+
+div.toolbar button#connect {
+    float: none;
+    margin: 0 auto;
+}
+
+.button-green {
+    background: #0d4 !important;
+}
+
+.button-red {
+    background: #f65 !important;
+}
+
+div.toolbar button#removepanel.active {
+    background-color: #f55;
+}
+
+.dropdown {
+    position: relative;
+    display: block;
+    float: right;
+}
+
+.dropdown-content {
+    position: absolute;
+    display: none;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    z-index: 1;
+    transition: display 0.3s;
+    text-align: left;
+}
+
+.dropdown.active .dropdown-content {
+    display: block;
+}
+
+.dropdown-content button {
+    display: block;
+    text-align: left;
+    width: 120;
+    z-index: 1001;
+}
+
+.plotly .modebar {
+    z-index: 1 !important;
+}
+
+.tabcontent {
+    display: none;
+    flex: 1 1 auto;
+    padding: 0;
+    border-top: none;
+}

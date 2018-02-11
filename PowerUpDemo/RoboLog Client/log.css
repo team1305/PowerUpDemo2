@@ -1,0 +1,49 @@
+.logview {
+    font-family: monospace;
+    flex: 1 1 auto;
+    display: flex;
+    position: relative;
+    background: #222;
+}
+
+.logView .scrollView {
+    padding: 0.5em;
+    flex: 1 1 auto;
+    display: flex;
+    overflow-y: scroll;
+}
+
+.logview .column {
+    flex: 0 1 auto;
+    flex-flow: column;
+    margin: 0 0.5em;
+}
+
+.logview .timestamp {
+    color: #777;
+}
+
+.logview .subject {
+    color: #aaa;
+}
+
+.logview .message {
+    color: #eee;
+}
+
+#log-filter-group {
+    max-height: 350px;
+}
+
+.logView .open-settings-button {
+    right: 20px;
+}
+
+.log-bottom-button {
+    position: absolute;
+    bottom: 0px;
+    right: 45px;
+
+    font-size: 1.7em;
+    color: #888;
+}

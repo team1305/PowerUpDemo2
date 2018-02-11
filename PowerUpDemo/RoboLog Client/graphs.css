@@ -1,0 +1,15 @@
+.graphview {
+    display: flex;
+    flex: 1 1 auto;
+
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    width: inherit;
+    min-width: 0;
+}
+
+.graphview p {
+    color: #666;
+}
