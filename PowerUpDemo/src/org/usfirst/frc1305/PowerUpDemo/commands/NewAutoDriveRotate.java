@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class NEWAutoDriveRotate extends Command {
+public class NewAutoDriveRotate extends Command {
 	
 	
 
@@ -20,7 +20,7 @@ public class NEWAutoDriveRotate extends Command {
 	
 
 
-    public NEWAutoDriveRotate(double angle, double power, double minpower, double rampdown) {
+    public NewAutoDriveRotate(double angle, double power, double minpower, double rampdown) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(Robot.drive);

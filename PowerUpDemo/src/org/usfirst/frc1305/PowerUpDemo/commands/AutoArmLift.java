@@ -26,11 +26,11 @@ public class AutoArmLift extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (m_armlift) {
-    		Robot.elevator.ArmUp();
-    	} else {
-    		Robot.elevator.ArmDown();
-    	}
+//    	if (m_armlift) {
+//    		Robot.elevator.ArmUp();
+//    	} else {
+//    		Robot.elevator.ArmDown();
+//    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

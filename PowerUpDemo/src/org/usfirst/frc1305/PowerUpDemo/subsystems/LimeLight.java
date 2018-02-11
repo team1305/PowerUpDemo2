@@ -11,10 +11,6 @@
 
 package org.usfirst.frc1305.PowerUpDemo.subsystems;
 
-import org.usfirst.frc1305.PowerUpDemo.RobotMap;
-import org.usfirst.frc1305.PowerUpDemo.commands.*;
-
-import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;

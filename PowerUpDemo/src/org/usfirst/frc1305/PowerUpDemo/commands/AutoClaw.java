@@ -28,13 +28,13 @@ public class AutoClaw extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (m_command == "Open") {
-    		Robot.intake.ClawOpen();
-    	} else if (m_command == "Push") {
-    		Robot.intake.intakeSpeed(m_power);
-    	} else if ( m_command == "Close") {
-    		Robot.intake.ClawClose();
-    	}
+//    	if (m_command == "Open") {
+//    		Robot.intake.ClawOpen();
+//    	} else if (m_command == "Push") {
+//    		Robot.intake.intakeSpeed(m_power);
+//    	} else if ( m_command == "Close") {
+//    		Robot.intake.ClawClose();
+//    	}
     	
     }
 
