@@ -15,7 +15,7 @@ public class Cmd_LED_Blink extends Command {
     public Cmd_LED_Blink() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(Robot.rgbledpcm);
+        requires(Robot.rgbledCAN);
     }
 
     // Called just before this Command runs the first time
@@ -28,19 +28,19 @@ public class Cmd_LED_Blink extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         if (timer.get() > 0.3) {
-        	Robot.rgbledpcm.LEDblue();
+        	Robot.rgbledCAN.LEDblue();
         if (timer.get() > 0.6) 
-            Robot.rgbledpcm.LEDcyan();
+            Robot.rgbledCAN.LEDcyan();
         if (timer.get() > 0.9) 
-            Robot.rgbledpcm.LEDgreen();
+            Robot.rgbledCAN.LEDgreen();
         if (timer.get() > 1.2)           
-            Robot.rgbledpcm.LEDpink();
+            Robot.rgbledCAN.LEDpink();
         if (timer.get() > 1.5)           
-            Robot.rgbledpcm.LEDred();
+            Robot.rgbledCAN.LEDred();
         if (timer.get() > 1.8)           
-            Robot.rgbledpcm.LEDwhite();
+            Robot.rgbledCAN.LEDwhite();
         if (timer.get() > 2.1)           
-            Robot.rgbledpcm.LEDyellow();
+            Robot.rgbledCAN.LEDyellow();
         if (timer.get() > 2.4)
             timer.reset();
         }

@@ -90,7 +90,7 @@ public class OI {
 
     	// Primary Driver Stick
     	btn1_A.whenPressed(new Cmd_Arm_Toggle());//xbox "A" Button 1
-    	btn1_B.whileHeld(new Cmd_LED_Blink());//xbox "B" Button 2
+    	btn1_B.whenPressed(new Cmd_LED_Blink());//xbox "B" Button 2
     	btn1_X.whileHeld(new Cmd_Intake_Out());//xbox "X" Button 3
     	btn1_Y.whileHeld(new Cmd_Intake_In());//xbox "Y" Button 4
     	btn1_LB.whileHeld(new Cmd_Intake_Out());//xbox "LB" Button 5

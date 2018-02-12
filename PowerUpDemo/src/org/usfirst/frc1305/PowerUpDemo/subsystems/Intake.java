@@ -83,7 +83,7 @@ public class Intake extends Subsystem {
     	armLeft.set(nspeed);
     	armRight.set(nspeed);
     	
-    	Robot.rgbledpcm.LEDblue();
+    	Robot.rgbledCAN.LEDblue();
     }
     
     public void intakeOff() {
