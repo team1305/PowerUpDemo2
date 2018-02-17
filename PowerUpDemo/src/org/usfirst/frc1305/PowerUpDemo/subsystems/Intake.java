@@ -11,7 +11,6 @@
 
 package org.usfirst.frc1305.PowerUpDemo.subsystems;
 
-import org.usfirst.frc1305.PowerUpDemo.Robot;
 import org.usfirst.frc1305.PowerUpDemo.RobotMap;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -82,43 +81,12 @@ public class Intake extends Subsystem {
     public void intakeSpeed(double nspeed) {
     	armLeft.set(nspeed);
     	armRight.set(nspeed);
-    	
-    	Robot.rgbledCAN.LEDblue();
     }
     
     public void intakeOff() {
     	armLeft.set(0);
     	armRight.set(0);
     }
-
-//    public void ClawOpen() {
-//    	this.claw.set(false);
-//    	////this.clawRight.set(false);
-//    	isClawClosed = false;
-//    }
-//    
-//    public void ClawClose() {
-//    	this.claw.set(true);
-//    	////this.clawRight.set(true);
-//    	isClawClosed = true;
-//    	
-//    }
-    
-    
-//    public void toggleClaw() {
-//    	if (isClawClosed) {
-//    		ClawOpen();
-//    	} else {
-//    		ClawClose();
-//    	}
-//    	
-//    }
-   
-    
-    
-
-
-
 
 }
 
