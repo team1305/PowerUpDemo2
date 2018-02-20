@@ -10,11 +10,12 @@ import edu.wpi.first.wpilibj.command.Command;
 public class Auto_Intake extends Command {
 
 	double m_npower;
+
 	
     public Auto_Intake(double npower) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.intake);    	
+    	requires(Robot.intake);  
     	
     	m_npower = npower;
     	
@@ -22,7 +23,6 @@ public class Auto_Intake extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	setTimeout(1);
     	
        	Robot.rgbledCAN.LEDoff();
     	Robot.rgbledCAN.LEDmagenta();
@@ -30,13 +30,13 @@ public class Auto_Intake extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.intakeSpeed(0 - Math.abs(m_npower));
+
     	Robot.intake.intakeSpeed(m_npower);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return  isTimedOut();
+        return true;
     }
 
     // Called once after isFinished returns true

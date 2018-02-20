@@ -43,264 +43,265 @@ public class AutoCommands extends CommandGroup {
         SmartDashboard.putString("GameData", m_gamedata);
         
         
-        addSequential(new Auto_Gyro_Reset());  //reset gyro and encoders
+        addSequential(new Auto_Gyro_Reset());  //reset gyro and drive encoders
         
         if (commandtorun == 1) { // Cross The Line
         	if (m_switch == 'L') {
+        		//WORKS!
         		addSequential(new Auto_Start());
-        		addSequential(new Auto_Wait_Seconds(1));
-        		addSequential(new Auto_Drive(0, 111, 0.66, 0.4, 12 )); //(double angle1, double distance1, double power, double minpower, double rampup )
+        		addSequential(new Auto_Wait_Seconds(0.1));
+        		addSequential(new Auto_Drive(0, 111, 0.65, 0.5, 12 )); //(double angle1, double distance1, double power, double minpower, double rampup )
         		addSequential(new Auto_Finished());
              	
         	} else {
+        		//WORKS!
         		addSequential(new Auto_Start());
-        		addSequential(new Auto_Wait_Seconds(1));
-        		addSequential(new Auto_Drive(0, 111, 0.65, 0.4, 12 )); //(double angle1, double distance1, double power, double minpower, double rampup )
+        		addSequential(new Auto_Wait_Seconds(0.1));
+        		addSequential(new Auto_Drive(0, 111, 0.65, 0.5, 12 )); //(double angle1, double distance1, double power, double minpower, double rampup )
         		addSequential(new Auto_Finished());
         	}        	
         }
         
         if (commandtorun == 2) { // SCALE - Robot Left
         	if (m_scale == 'L') {
-        		addSequential(new Auto_Drive(0,100,0.7,0.5,20 )); 
-        		addParallel(new Auto_Elevate(15));
-        		addSequential(new Auto_Drive(0,230,0.7,0.5,20 )); 
-        		addSequential(new Auto_Rotate(25, 0, 0)); 
-        		addSequential(new Auto_Drive(25,10,0.7,0.5,20 )); 
-        		addSequential(new Auto_Intake(-0.8)); 
-        		addParallel(new Auto_Elevate(-8));
-        		
-        		addSequential(new Auto_Rotate (135, 0, 0.5));
-        		
-        		addSequential(new Cmd_Arm_Toggle());
-        		addSequential(new Auto_Drive(135,48,0.6,0.5,20 )); 
-        		addParallel(new Auto_Intake(0.9));
-        		//addParallel(new AutoElevate(0.5));
-        		//addSequential(new AutoIntakePush(0.8)); 
-        	} else {
-        		
+        		//WIP
         		addSequential(new Auto_Start());
-        		addSequential(new Auto_Wait_Seconds(0.1));
-        		addSequential(new Auto_Drive(0,250,0.7,0.5,20 )); 
-        		//addParallel(new Auto_Elevate(15));
-        		//addSequential(new Auto_Rotate(25, 0, 0)); 
-        		addSequential(new Auto_Wait_Seconds(5));
-        		//addSequential(new Auto_Drive(0, 74, 0.75, 0.4, 12 )); //(double angle1, double distance1, double power, double minpower, double rampup )
-        		//
-        		///addSequential (new zzzzzAuto_Drive_Curve (90, 72, .7, .6, 0, 0)); //(double angle, double distance,  double power, double minpower, double rampup, double rampdown) 
-        		//addParallel(new Auto_Elevate(3));
+        		addSequential(new Auto_Drive(1, 45, 0.8, 0.4, 20 )); //(double angle1, double distance1, double power, double minpower, double rampup )
+        		addParallel(new Auto_Elevate_Max(5 )); // Raise elevator to max height
         		
-        		addSequential(new Auto_Wait_Seconds(5));
+        		addSequential(new Auto_Drive(0, 280, 0.8, 0.4, 0 )); //(double angle1, double distance1, double power, double minpower, double rampup )
         		
-        		addSequential(new Auto_Drive(0,160,0.65,0.4,20 )); 
         		
-        		addSequential(new Auto_Wait_Seconds(5));
+        		addSequential(new Auto_Tank_Rotate(38, 0.65, 0.2, 5 )); //(double AutoRotateAngle, double LeftPower, double RightPower, double TimeOut )
+        		addSequential(new Auto_Drive(38, 10, 0.7, 0.4, 0 )); //(double angle1, double distance1, double power, double minpower, double rampup )
+
+        		addSequential(new Auto_Drive_Stop()); // stop the drive motors
+        		addSequential(new Auto_Wait_Seconds(.1)); // wait to allow time to settle		
         		
-        		addSequential(new Auto_Rotate(0, 0, 0));
-        		addSequential(new Auto_Finished());
+        		addSequential(new Auto_Intake(-0.7)); //spit cube out
+          		addSequential(new Auto_Wait_Seconds(.25)); //continue to spit
+        		
+        		addSequential(new Auto_Intake(0)); // turn intake off
+        		
+        		addParallel(new Auto_Elevate_Min(5 )); //lower elevator to minimum height
+        		addSequential(new Auto_Tank_Rotate(150, 0.3, -0.7, 5 )); //(double AutoRotateAngle, double LeftPower, double RightPower, do       		
+        		
+        		
+        		addSequential (new Auto_Arm_Down()); // lower the 4bar
+        		
+        		addSequential(new Auto_Drive(150, 84, 0.75, 0.4, 0 )); //(double angle1, double distance1, double power, double minpower, double rampup )
+        		
+        		
+        		addParallel(new Auto_Intake(0.7)); // intake the cube
+        		
+        		addSequential(new Auto_Drive(150, 30, 0.6, 0.4, 0 )); //(double angle1, double distance1, double power, double minpower, double rampup )
+        		addSequential(new Auto_Drive_Stop()); // stop the drive motors
+
+        		addSequential(new Auto_Wait_Seconds(.2)); // pause to allow the cube to get sucked in
+        		
+        		addSequential(new Auto_Tank_Rotate(100, -0.75, 0.3, 5 )); //(double AutoRotateAngle, double LeftPower, double RightPower, double TimeOut )
+        		
+        		addSequential(new Auto_Intake(0)); // turn intake off
+        		addSequential (new Auto_Arm_Up()); // raise the 4bar
+        		
+        		addParallel(new Auto_Elevate_Max(5 )); // Raise elevator to max height
+        		
+        		addSequential(new Auto_Tank_Rotate(27, -0.7, 0.3, 5 )); //(double AutoRotateAngle, double LeftPower, double RightPower, double TimeOut )
+        		addSequential(new Auto_Drive(27, 69, 0.7, 0.4, 0 )); //(double angle1, double distance1, double power, double minpower, double rampup )
+
+        		addSequential(new Auto_Drive_Stop()); // stop the drive motors
+        		addSequential(new Auto_Wait_Seconds(.1)); // wait to allow time to settle	
+        		
+        		addSequential(new Auto_Intake(-0.4)); // spit cube out
+          		addSequential(new Auto_Wait_Seconds(.25)); //wait for spit
+        		
+        		addSequential(new Auto_Intake(0)); // turn intake off
+        		
+        		addParallel(new Auto_Elevate_Min(5 )); //lower elevator to minimum height
+        		addSequential(new Auto_Tank_Rotate(140, 0.3, -0.7, 5 )); //(double AutoRotateAngle, double LeftPower, double RightPower, do       		
+        		
+        		addSequential(new Auto_Finished()); // end auto
+
+        	} else {
+        		//WIP
+        		addSequential(new Auto_Start());
+        		addSequential(new Auto_Drive(0, 110, 0.75, 0.4, 20 )); //(double angle1, double distance1, double power, double minpower, double rampup )
+        		addSequential(new Auto_Drive(0, 130, 0.75, 0.4, 0 )); //(double angle1, double distance1, double power, double minpower, double rampup )
+        		addSequential(new Auto_Tank_Rotate(90, 0.7, 0.2, 5 )); //(double AutoRotateAngle, double LeftPower, double RightPower, double TimeOut )
+        		
+        		addSequential(new Auto_Drive(90, 60, 0.75, 0.4, 0 )); //(double angle1, double distance1, double power, double minpower, double rampup )
+        		
+        		addParallel(new Auto_Elevate_Max(5 )); // Raise elevator to max height
+        		
+        		addSequential(new Auto_Drive(90, 120, 0.6, 0.4, 0 )); //(double angle1, double distance1, double power, double minpower, double rampup )     		
+        		
+
+        		addSequential(new Auto_Tank_Rotate(-20, 0.0, 0.7, 5 )); //(double AutoRotateAngle, double LeftPower, double RightPower, double TimeOut )
+        		
+        		//addSequential(new Auto_Drive(-10, 10, 0.6, 0.4, 0 )); //(double angle1, double distance1, double power, double minpower, double rampup )     	
+        		
+        		addSequential(new Auto_Drive_Stop()); // stop the drive motors
+        		addSequential(new Auto_Wait_Seconds(.1)); // wait to allow time to settle	
+        		
+        		addSequential(new Auto_Intake(-0.6)); // spit cube out
+          		addSequential(new Auto_Wait_Seconds(.25)); //wait for spit
+        		
+        		addSequential(new Auto_Intake(0)); // turn intake off
+        		
+        		addParallel(new Auto_Elevate_Min(5 )); //lower elevator to minimum height
+
+        		addSequential(new Auto_Tank_Rotate(-90, -0.65, -0.15, 5 )); //(double AutoRotateAngle, double LeftPower, double RightPower, double TimeOut )
+
+        		addSequential(new Auto_Finished()); // end auto
         		
         	}        	
         }
         
         if (commandtorun == 3) { // SCALE - Robot Right
         	if (m_scale == 'L') {
-        		
+        		//WIP
         		addSequential(new Auto_Start());
         		addSequential(new Auto_Wait_Seconds(0.1));
-        		addSequential(new Auto_Drive(0,100,0.7,0.5,20 )); 
-        		//addParallel(new Auto_Elevate(15));
-        		//addSequential(new Auto_Rotate(25, 0, 0)); 
-
-        		//addSequential(new Auto_Drive(0, 74, 0.75, 0.4, 12 )); //(double angle1, double distance1, double power, double minpower, double rampup )
-        		//
-        		//addSequential (new zzzzzAuto_Drive_Curve (90, 36, .7, .3, 0, 6)); //(double angle, double distance,  double power, double minpower, double rampup, double rampdown) 
-        		//addParallel(new Auto_Elevate(3));
-        		
+        		addSequential(new Auto_Drive(0,48,0.7,0.5,20 )); 
         		addSequential(new Auto_Finished());
         		
         	} else {
-        		
+        		//WIP
+        		addSequential(new Auto_Start());
+        		addSequential(new Auto_Wait_Seconds(0.1));
+        		addSequential(new Auto_Drive(0,48,0.7,0.5,20 )); 
+        		addSequential(new Auto_Finished());
         	}        	
         }
         
         if (commandtorun == 4) { // Switch - Robot Centre
-        	if (m_switch == 'L') {
+        	if (m_switch == 'L') { 
+        		// WORKS!
         		addSequential(new Auto_Start());
         		addSequential(new Auto_Wait_Seconds(0.1));
-        		addSequential(new Auto_Drive(35, 74, 0.75, 0.4, 12 )); //(double angle1, double distance1, double power, double minpower, double rampup )
-        		addParallel(new Auto_Elevate(1));
-        		addSequential(new Auto_Drive(0, 80, 0.75, 0.4, 0 )); //(double angle1, double distance1, double power, double minpower, double rampup )
+        		addSequential(new Auto_Drive(-55, 60, 0.75, 0.4, 12 )); //(double angle1, double distance1, double power, double minpower, double rampup )
+        		addParallel(new Auto_Elevate(0.5, 1));
+        		addSequential(new Auto_Drive(0, 100, 0.75, 0.4, 0 )); //(double angle1, double distance1, double power, double minpower, double rampup )
         		addSequential(new Auto_Drive_Stop());
-        		//addSequential(new Auto_Elevator_SetHeight(500000));
-        		addSequential(new Auto_Wait_Seconds(.5)); 		
-        		addSequential(new Auto_Intake(-0.8)); 
-        		addSequential(new Auto_Wait_Seconds(1));
-        		addSequential(new Auto_Intake_Off());
-             	addSequential(new Auto_Finished());		 
-        	} else {
-        		addSequential(new Auto_Start());
-        		addSequential(new Auto_Wait_Seconds(0.1));
-        		addSequential(new Auto_Drive(-55, 92, 0.75, 0.4, 12 )); //(double angle1, double distance1, double power, double minpower, double rampup )
-        		addParallel(new Auto_Elevate(1));
-        		addSequential(new Auto_Drive(0, 84, 0.75, 0.4, 0 )); //(double angle1, double distance1, double power, double minpower, double rampup )
+        		addSequential(new Auto_Wait_Seconds(.2)); 		
+        		addSequential(new Auto_Intake(-0.6)); 
+        		addSequential(new Auto_Wait_Seconds(.2));
+        		addSequential(new Auto_Intake(0));
+        		
+        		addSequential(new Auto_Tank_Rotate(70, 0.02, -0.7, 5 )); //(double AutoRotateAngle, double LeftPower, double RightPower, double TimeOut )
+        		addSequential (new Auto_Arm_Down()); // lower the 4bar
+        		addParallel(new Auto_Elevate_Min(2 )); //lower elevator to minimum height
+        		addSequential(new Auto_Drive(70, 55, 0.8, 0.4, 0 )); //(double angle1, double distance1, double power, double minpower, double rampup )
+        		addSequential(new Auto_Intake(0.9)); 
+        		addSequential(new Auto_Drive(70, 20, 0.45, 0.3, 0 )); //(double angle1, double distance1, double power, double minpower, double rampup )
+        		addSequential(new Auto_Wait_Seconds(.3)); 
+        		addSequential(new Auto_Intake(0.5));
+        		addSequential(new Auto_Tank_Rotate(-5, -0.75, 0.2, 5 )); //(double AutoRotateAngle, double LeftPower, double RightPower, double TimeOut )
+        		addSequential(new Auto_Intake(0));
+        		addSequential (new Auto_Arm_Up()); // raise the 4bar
+        		addParallel(new Auto_Elevate(0.5, 1));
+        		addSequential(new Auto_Drive(-5, 45, 0.7, 0.4, 0 )); //(double angle1, double distance1, double power, double minpower, double rampup )
         		addSequential(new Auto_Drive_Stop());
-        		//addSequential(new Auto_Elevator_SetHeight(500000));
-        		addSequential(new Auto_Wait_Seconds(.5)); 		
-        		addSequential(new Auto_Intake(-0.8)); 
-        		addSequential(new Auto_Wait_Seconds(1));
-        		addSequential(new Auto_Intake_Off());
+        		addSequential(new Auto_Wait_Seconds(.2)); 	
+        		addSequential(new Auto_Intake(-0.6)); 
+        		addSequential(new Auto_Wait_Seconds(.2));
+        		addSequential(new Auto_Intake(0));
+        		
+        		addSequential(new Auto_Tank_Rotate(70, 0.02, -0.7, 5 )); //(double AutoRotateAngle, double LeftPower, double RightPower, double TimeOut )
+        		addSequential (new Auto_Arm_Down()); // lower the 4bar
+        		addParallel(new Auto_Elevate_Min(2 )); //lower elevator to minimum height
+        		addSequential(new Auto_Drive(70, 55, 0.8, 0.4, 0 )); //(double angle1, double distance1, double power, double minpower, double rampup )
+        		addSequential(new Auto_Intake(0.9)); 
+        		addSequential(new Auto_Drive(70, 20, 0.45, 0.3, 0 )); //(double angle1, double distance1, double power, double minpower, double rampup )
+        		addSequential(new Auto_Wait_Seconds(.3)); 
+        		addSequential(new Auto_Intake(0.5));
+        		addSequential(new Auto_Tank_Rotate(-5, -0.75, 0.2, 5 )); //(double AutoRotateAngle, double LeftPower, double RightPower, double TimeOut )
+        		addSequential(new Auto_Intake(0));
+        		addSequential (new Auto_Arm_Up()); // raise the 4bar
+        		addParallel(new Auto_Elevate(0.5, 1));
+        		addSequential(new Auto_Drive(-5, 45, 0.7, 0.4, 0 )); //(double angle1, double distance1, double power, double minpower, double rampup )
+        		addSequential(new Auto_Drive_Stop());
+        		addSequential(new Auto_Wait_Seconds(.2)); 	
+        		addSequential(new Auto_Intake(-0.6)); 
+        		addSequential(new Auto_Wait_Seconds(.2));
+        		addSequential(new Auto_Intake(0));
+        		   
         		addSequential(new Auto_Finished());
-        	}     
-            if (commandtorun == 5) { // Test - Robot Left
-            	if (m_scale == 'L') {
-            		
-            		addSequential(new Auto_Start());
-            		addSequential(new Auto_Wait_Seconds(1));
-            		
-            		addSequential(new Auto_Drive(0, 48, 0.6, 0.4, 12 )); //(double angle1, double distance1, double power, double minpower, double rampup )
-            		addSequential(new Auto_Tank_Rotate (90, .4, .2, 5 ));  //(double AutoRotateAngle, double LeftPower, double RightPower, double TimeOut ) 
-            		
-            		addSequential(new Auto_Drive(90, 48, 0.6, 0.4, 12 )); //(double angle1, double distance1, double power, double minpower, double rampup )
-            		addSequential(new Auto_Tank_Rotate (180, .4, .2, 5 ));  //(double AutoRotateAngle, double LeftPower, double RightPower, double TimeOut ) 
-            		
-            		addSequential(new Auto_Drive(180, 48, 0.6, 0.4, 12 )); //(double angle1, double distance1, double power, double minpower, double rampup )
-            		addSequential(new Auto_Tank_Rotate (270, .4, .2, 5 ));  //(double AutoRotateAngle, double LeftPower, double RightPower, double TimeOut ) 
-            		
-            		addSequential(new Auto_Drive(270, 48, 0.6, 0.4, 12 )); //(double angle1, double distance1, double power, double minpower, double rampup )
-            		addSequential(new Auto_Tank_Rotate (360, .4, .2, 5 ));  //(double AutoRotateAngle, double LeftPower, double RightPower, double TimeOut ) 
-            		
-            		addSequential(new Auto_Finished());
-            	}
-            		
-            	} else {
-            		
-            	}
-        	
-        	
+
+        	} else {
+        		// WORKS!
+        		addSequential(new Auto_Start());
+        		addSequential(new Auto_Wait_Seconds(0.1));
+        		addSequential(new Auto_Drive(37, 74, 0.8, 0.4, 12 )); //(double angle1, double distance1, double power, double minpower, double rampup )
+        		addParallel(new Auto_Elevate(0.5, 1));
+        		addSequential(new Auto_Drive(0, 73, 0.75, 0.4, 0 )); //(double angle1, double distance1, double power, double minpower, double rampup )
+        		addSequential(new Auto_Drive_Stop());
+        		addSequential(new Auto_Wait_Seconds(.5)); 		
+        		addSequential(new Auto_Intake(-0.8)); 
+        		addSequential(new Auto_Wait_Seconds(1));
+        		addSequential(new Auto_Intake(0));
+        		
+        		addSequential(new Auto_Tank_Rotate(-70, -0.7, 0.05, 5 )); //(double AutoRotateAngle, double LeftPower, double RightPower, double TimeOut )
+        		addSequential (new Auto_Arm_Down()); // lower the 4bar
+        		addParallel(new Auto_Elevate_Min(2 )); //lower elevator to minimum height
+        		addSequential(new Auto_Drive(-65, 55, 0.75, 0.4, 0 )); //(double angle1, double distance1, double power, double minpower, double rampup )
+        		addSequential(new Auto_Intake(0.9)); 
+        		addSequential(new Auto_Drive(-65, 20, 0.4, 0.3, 0 )); //(double angle1, double distance1, double power, double minpower, double rampup )
+        		addSequential(new Auto_Wait_Seconds(.3)); 
+        		addSequential(new Auto_Intake(0.5));
+        		addSequential(new Auto_Tank_Rotate(-5, 0.2, -0.8, 5 )); //(double AutoRotateAngle, double LeftPower, double RightPower, double TimeOut )
+        		addSequential(new Auto_Intake(0));
+        		addSequential (new Auto_Arm_Up()); // raise the 4bar
+        		addParallel(new Auto_Elevate(0.5, 1));
+        		addSequential(new Auto_Drive(5, 40, 0.7, 0.4, 0 )); //(double angle1, double distance1, double power, double minpower, double rampup )
+        		addSequential(new Auto_Drive_Stop());
+        		addSequential(new Auto_Wait_Seconds(.2)); 	
+        		addSequential(new Auto_Intake(-0.6)); 
+        		addSequential(new Auto_Wait_Seconds(.2));
+        		addSequential(new Auto_Intake(0));
+        		
+             	addSequential(new Auto_Finished());		 
+
+        	}
         }
-         
-       // run_command(Constants.getAsString("PL1C1" ));	
-        
-    	// commandtorun is 1, 2, 3, 4 - preset programs		 
-    	for (int ni=1; ni <= 1; ni++) {     			    	
-//   		   run_command(Constants.getAsString("P" + m_scale + Integer.toString(commandtorun) + "C" + Integer.toString(ni)));	 
-   		 //  run_command(Constants.getAsString("PL1C" + Integer.toString(ni)));	 
+        	  if (commandtorun == 5) { // TEST
+              	if (m_switch == 'L') {
+              		// WIP
+            		addSequential(new Auto_Start());
+            		addSequential(new Auto_Wait_Seconds(0.1));
+            		
+            		addSequential(new Auto_Drive(0, 36, 0.75, 0.4, 12 )); //(double angle1, double distance1, double power, double minpower, double rampup )
+            		addSequential(new Auto_Tank_Rotate(90, 0.7, 0.2, 5 )); //(double AutoRotateAngle, double LeftPower, double RightPower, double TimeOut )
+
+            		addSequential(new Auto_Drive(90, 36, 0.75, 0.4, 12 )); //(double angle1, double distance1, double power, double minpower, double rampup )
+            		addSequential(new Auto_Tank_Rotate(180, 0.7, 0.2, 5 )); //(double AutoRotateAngle, double LeftPower, double RightPower, double TimeOut )
+            		
+            		addSequential(new Auto_Drive(179.9, 36, 0.75, 0.4, 12 )); //(double angle1, double distance1, double power, double minpower, double rampup )         		
+            		addSequential(new Auto_Tank_Rotate(-90, 0.7, 0.2, 5 )); //(double AutoRotateAngle, double LeftPower, double RightPower, double TimeOut )
+
+            		
+            		addSequential(new Auto_Drive(-90, 36, 0.75, 0.4, 12 )); //(double angle1, double distance1, double power, double minpower, double rampup )
+            		addSequential(new Auto_Tank_Rotate(0, 0.7, 0.2, 5 )); //(double AutoRotateAngle, double LeftPower, double RightPower, double TimeOut )
+            		
+            		addSequential(new Auto_Drive_Stop());
+            		
+            		addSequential(new Auto_Finished());		
+                   	
+              	} else {
+              		// WIP
+            		addSequential(new Auto_Start());
+            		addSequential(new Auto_Wait_Seconds(0.1));
+            		addSequential(new Auto_Elevate_Max(5 )); //timeout
+            		addSequential(new Auto_Finished());		
+              	}        	
+              }
+        	
+        	
+       
+
 
     	}    	   
-    }
 
-    public void run_command(String ccommand) {
-    	if (ccommand.length() > 0) {
-    		
-    		
-    		// ex. D0|48|90|36|0.80|0.5|20			// Drive Angle/Dist1, Drive Angle/Dist2, Power, MinPower, RampUp
-    		// ex. R0, R90, R-90, R180				// Rotate to Angle
-    		// ex. AUP, ADOWN						// Arm Up/Down
-    		// ex. E0, E96							// Set Elevator Height
-    		// ex. P0.2, P1.0						// Push using Intake Reverse
-    		// ex. I0.5, I1							// Intake 
-    		// ex. OPEN								// Open Claw
-    		// ex. CLOSE							// Close Claw
-    		
-    		String theCommand = ccommand.substring(0, 1);
-    		// ex. D0|48|90|36|0.80|0.5|20
-    		String cparams = ccommand.substring(1);
-    		// ex. 0|48|90|36|0.80|0.5|20
-    		SmartDashboard.putString("Command", ccommand);
-    		SmartDashboard.putString("Command Letter", theCommand);
-        	SmartDashboard.putString("Params", cparams);
-             
-    	   if (theCommand.equalsIgnoreCase("D")) {
-    		   SmartDashboard.putString("CommandD", "Running");
-       		   String match = "|";
-       		   String[] params = new String[10];
-       		   int nparam = 1;
-    		   int index = cparams.indexOf(match);
-    		   while (index >= 0) {  // indexOf returns -1 if no match found      
-    			   if (nparam <= 9) {
-    			   params[nparam] = cparams.substring(0, index);
-    			   nparam++;	
-    			   cparams = cparams.substring(index);
-
-    			   index = cparams.indexOf(match);
-    			   } else {
-    				   index = -1;
-    			   }
-    		   }    
-    		   nparam++;
-    		   if (nparam <= 10) {
-    		   params[nparam] = cparams;
-    		   }
-    		   /*SmartDashboard.putString("Param1", params[1]);
-    		   SmartDashboard.putString("Param2", params[2]);
-    		   SmartDashboard.putString("Param3", params[3]);
-    		   SmartDashboard.putString("Param4", params[4]);
-    		   SmartDashboard.putString("Param5", params[5]);
-    		   SmartDashboard.putString("Param6", params[6]);
-    		  // SmartDashboard.putString("Param7", params[7]);*/
-    		   
-//    		   System.out.println(params[1]);    		  
-//    		   System.out.println(params[2]);    		  
-//    		   System.out.println(params[3]);    		  
-//    		   System.out.println(params[4]);    		  
-//    		   System.out.println(params[5]);    		  
-//    		   System.out.println(params[6]);    		  
-//    		   System.out.println(params[7]);    		  
-
-    		   addSequential(new ZZZ_NewAutoDriveStraight(Double.parseDouble(params[1]), Double.parseDouble(params[2]), Double.parseDouble(params[3]), Double.parseDouble(params[4]), Double.parseDouble(params[5]), Double.parseDouble(params[6]), Double.parseDouble(params[7]) ));   		   
-    	   }
-
-    	   if (theCommand == "R") {
-    		   addSequential(new Auto_Rotate(Double.parseDouble(cparams), 0, 0));    		     	     
-    	   }
-
-    	   if (theCommand == "A") {
-    		   if (cparams.charAt(0) == 'U') {
-    			   addSequential(new ZZZ_AutoArmLift(true)); // Arm Up  		    	    
-    		   } else if (cparams.charAt(0) == 'D') {
-    			   addSequential(new ZZZ_AutoArmLift(false)); // Arm Down   	    	 
-    		   }
-    	   }
-
-    	   if (theCommand == "P") { 
-    		   addSequential(new ZZZ_AutoClaw("Push", Double.parseDouble(cparams)));    
-    	   }
-
-    	   if (theCommand == "O") { 
-    		   addSequential(new ZZZ_AutoClaw("Open", 0));    
-    	   }
-
-    	   if (theCommand == "C") { 
-    		   addSequential(new ZZZ_AutoClaw("Close", 0));    
-    	   }
-    	   
-    	   if (theCommand == "E") { 
-    		   addSequential(new Auto_Elevate(Double.parseDouble(cparams)));    
-    	   }
-    	   
-//    	   if (theCommand == "I") { 
-//    		   addSequential(new Auto_Intake_Off(Double.parseDouble(cparams)));    
-//    	   }
-    	   
-       }
-   	   
- 	
-    }
-    
-    protected void calc_distances() {
-       double disttoswitch = 5;
-/*       
-       // Use Vision to calculate distance 
-       m_drivedistance1 = 48;
-       if (m_gamedata.charAt(1) == 'L') {
-           m_drivedistance2 = 96;    	   
-       } else {
-           m_drivedistance2 = 48;    	   
-       }
-*/
-           	
-    }
-    
     
     // Called just before this Command runs the first time
     protected void initialize() {

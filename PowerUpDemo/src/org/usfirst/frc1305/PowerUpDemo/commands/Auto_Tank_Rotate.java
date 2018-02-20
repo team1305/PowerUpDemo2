@@ -48,18 +48,18 @@ public class Auto_Tank_Rotate extends Command {
     protected void execute() {
 
     	
-    	if (Math.abs(m_autorotateangle - Robot.navX.getYaw())  < 10) {
-    		Robot.drive.driveTank(m_leftpower /2, m_rightpower /2);
+    	if (Math.abs(m_autorotateangle - Robot.navX.getYaw())  < 5) {
+    		Robot.drive.driveTank(m_leftpower /1.5, m_rightpower /1.5);
     	} else {
     		Robot.drive.driveTank(m_leftpower, m_rightpower);
     	}
     	
-    	
+       	SmartDashboard.putNumber("NavX getYaw", Robot.navX.getYaw());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return (Math.abs(m_autorotateangle - Robot.navX.getYaw())  < 1) || (isTimedOut());
+    	return (Math.abs(m_autorotateangle - Robot.navX.getYaw())  < 2) || (isTimedOut());
     }
 
     // Called once after isFinished returns true

@@ -7,53 +7,40 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ZZZ_AutoClaw extends Command {
+public class Auto_Arm_Up extends Command {
 
-	String m_command;
-	double m_power;
-	
-    public ZZZ_AutoClaw(String ccommand, double npower) {
+    public Auto_Arm_Up() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.intake);
-    	
-    	m_command = ccommand;
-    	m_power = npower;
+    	requires(Robot.elevator);
+    	////requires(Robot.rgbledCAN);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	setTimeout(1);
+    	//setTimeout(1);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-   //if (m_command == "Open") {
-   // }
-    //		Robot.intake.ClawOpen();
-//    	} else if (m_command == "Push") {
-//   		Robot.intake.intakeSpeed(m_power);
-//    	} else if ( m_command == "Close") {
-//    		Robot.intake.ClawClose();
-//    	}
+    	Robot.elevator.ArmUp();
+    	////Robot.rgbledCAN.LEDyellow();
     	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (m_command == "Push") {
-           return isTimedOut();	
-        } else {
-    	   return true;
-        }
+        return  true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	////Robot.rgbledCAN.LEDblue();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

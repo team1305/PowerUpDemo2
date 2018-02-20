@@ -21,8 +21,8 @@ public class Auto_Start extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	
-        timer.reset();
-        timer.start();
+        //timer.reset();
+        //timer.start();
     }
 
     // Called repeatedly when this Command is scheduled to run

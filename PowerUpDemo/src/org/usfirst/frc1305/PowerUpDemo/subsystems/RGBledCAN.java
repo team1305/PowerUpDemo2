@@ -116,10 +116,8 @@ public class RGBledCAN extends Subsystem {
     }
     public void LEDwhite() {
 	 	LEDcontroller.setLEDOutput(1.0, LEDChannel.LEDChannelA);	//Blue
-	 	//LEDcontroller.setLEDOutput(1.0, LEDChannel.LEDChannelB);	//Red
-	 	
-	 	
-	 	//LEDcontroller.setLEDOutput(1.0, LEDChannel.LEDChannelC);	//Green
+	 	LEDcontroller.setLEDOutput(1.0, LEDChannel.LEDChannelB);	//Red
+	 	LEDcontroller.setLEDOutput(1.0, LEDChannel.LEDChannelC);	//Green
     		
     }
     

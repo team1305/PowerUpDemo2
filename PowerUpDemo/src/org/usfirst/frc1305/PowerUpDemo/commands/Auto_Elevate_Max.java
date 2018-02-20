@@ -1,45 +1,48 @@
 package org.usfirst.frc1305.PowerUpDemo.commands;
 
 import org.usfirst.frc1305.PowerUpDemo.Robot;
+import org.usfirst.frc1305.PowerUpDemo.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ZZZ_AutoArmLift extends Command {
+public class Auto_Elevate_Max extends Command {
 
-	boolean m_armlift;
 	
-    public ZZZ_AutoArmLift(boolean armlift) {
+    public Auto_Elevate_Max(double TimeOut) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	
     	requires(Robot.elevator);
-    	
-    	m_armlift = armlift;
+
+    	setTimeout(TimeOut);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//    	if (m_armlift) {
-//    		Robot.elevator.ArmUp();
-//    	} else {
-//    		Robot.elevator.ArmDown();
-//    	}
-    }
+    	Robot.elevator.Stage1Power(0.7);
+    }	
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return true;
+    protected boolean isFinished() {    	
+
+    	if (RobotMap.elevatorStage1L.getSensorCollection().isFwdLimitSwitchClosed() == false) { 
+    		return  true ;
+    	}else  isTimedOut(); {
+    		return  false ;  //isTimedOut();
+    	}
     }
 
+    
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.elevator.Stage1Power(0);
     }
 
     // Called when another command which requires one or more of the same

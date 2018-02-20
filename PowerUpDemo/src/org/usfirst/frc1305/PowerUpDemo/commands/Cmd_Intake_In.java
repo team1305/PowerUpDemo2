@@ -40,7 +40,7 @@ public class Cmd_Intake_In extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.intake.intakeOff();
+    	Robot.intake.intakeSpeed(0.1);
     	
        	Robot.rgbledCAN.LEDoff();
     	Robot.rgbledCAN.LEDblue();

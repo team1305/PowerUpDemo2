@@ -9,16 +9,16 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class Auto_Elevate extends Command {
 
-	double m_height;
+	double m_power;
+
 	
-    public Auto_Elevate(double nheight) {
+    public Auto_Elevate(double Power, double TimeOut) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.elevator);
-    	setTimeout(Math.abs(nheight));
+    	setTimeout(TimeOut);
     	
-    	
-    	  m_height = nheight;
+    	m_power = Power;
               	
     }
 
@@ -28,12 +28,9 @@ public class Auto_Elevate extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (m_height > 0) {
-    	Robot.elevator.Stage1Power(-0.7);
-    	} else {
-    		Robot.elevator.Stage1Power(0.7);
-    	}
-    	//Robot.elevator.setHeight(m_height);
+ 
+    		Robot.elevator.Stage1Power(m_power);
+
     }
 
     // Make this return true when this Command no longer needs to run execute()

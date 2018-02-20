@@ -25,13 +25,12 @@ public class Auto_Elevator_SetHeight extends Command {
     protected void initialize() {
     	Robot.elevator.resetEncoder();
 
-    	
-    	   	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
   
+
     	Robot.elevator.SetPosition(Eheight);
     	
     	Robot.rgbledCAN.LEDblue();
@@ -41,10 +40,8 @@ public class Auto_Elevator_SetHeight extends Command {
     protected boolean isFinished() {
     	//return false;
     	return (Robot.elevator.getPosition() >= Eheight) ;
-  
- 
-    }
 
+    }
 
     // Called once after isFinished returns true
     protected void end() {

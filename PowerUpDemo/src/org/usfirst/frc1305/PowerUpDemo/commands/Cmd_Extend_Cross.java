@@ -7,31 +7,36 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class zzzAuto_Intake_Off extends Command {
+public class Cmd_Extend_Cross extends Command {
 
-    public zzzAuto_Intake_Off() {
+    public Cmd_Extend_Cross() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.intake);    	
+    	requires(Robot.elevator);
+    	////requires(Robot.rgbledCAN);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.elevator.finalClimb();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.intakeOff();
+
+    	////Robot.rgbledCAN.LEDyellow();
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return  false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.intake.intakeOff();
+    	Robot.elevator.finalClimbReset();
+    	////Robot.rgbledCAN.LEDblue();
     }
 
     // Called when another command which requires one or more of the same

@@ -90,7 +90,7 @@ public class OI {
     	btn2_LB.whileHeld(new Cmd_Intake_Out());//xbox "LB" Button 5
     	btn2_RB.whileHeld(new Cmd_Intake_In());//xbox "RB" Button 6
     	//btn2_Back.whileHeld(new Cmd_LED_Blink());//xbox "Back" Button 7
-    	//btn2_Start.whileHeld(new Cmd_LED_Blink());//xbox "Start" Button 8
+    	btn2_Start.whileHeld(new Cmd_Extend_Cross());//xbox "Start" Button 8
     	//btn2_LS.whileHeld(new Cmd_LED_Blink());//xbox "Left Stick Click" Button 9
     	//btn2_RS.whileHeld(new Cmd_LED_Blink());//xbox "Right Stick Click" Button 10
     	////xbox "X Axis" Left Stick - 
@@ -106,7 +106,6 @@ public class OI {
         
 
         // SmartDashboard Buttons
-        SmartDashboard.putData("Autonomous Command", new ZZZ_AutonomousCommand());
         ////SmartDashboard.putData("IntakeCommand", new IntakeCommand());
         ////SmartDashboard.putData("DrivewithJoyStick", new DrivewithJoyStick());
         ////SmartDashboard.putData("IntakeRevCommand", new IntakeRevCommand());

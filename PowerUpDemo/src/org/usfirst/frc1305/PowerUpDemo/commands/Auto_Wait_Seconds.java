@@ -11,7 +11,10 @@
 
 package org.usfirst.frc1305.PowerUpDemo.commands;
 
+import org.usfirst.frc1305.PowerUpDemo.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -37,6 +40,7 @@ public class Auto_Wait_Seconds extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	SmartDashboard.putNumber("NavX getYaw", Robot.navX.getYaw());
     }
 
     // Make this return true when this Command no longer needs to run execute()

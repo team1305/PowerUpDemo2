@@ -26,7 +26,7 @@ public class Auto_Drive extends Command {
     	
     	 requires(Robot.drive);
          
-         this.distance1 = distance1; // * 147.083;
+         this.distance1 = distance1; 
          this.angle1 = angle1;
          this.power = power;
         
@@ -34,7 +34,7 @@ public class Auto_Drive extends Command {
          
          MinSpeed = minpower; //set to just enough power to move bot
          AnglePowerFactor = .1; /// 0.1 = 10%
-         RampUpDist = rampup; // * 147.083;     	
+         RampUpDist = rampup;      	
     }
 
     // Called just before this Command runs the first time
@@ -103,7 +103,8 @@ public class Auto_Drive extends Command {
     	
 //    	SmartDashboard.putNumber("currAngle", Robot.drive.gyroGetAngle());
 //    	SmartDashboard.putNumber("currPos", Robot.drive.getDistance());
-//    	SmartDashboard.putNumber("SetDistance", distance);    	
+//    	SmartDashboard.putNumber("SetDistance", distance);  
+       	SmartDashboard.putNumber("NavX getYaw", Robot.navX.getYaw());
     	
     }
 

@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Cmd_Elevator_Loop extends Command {
 
+	public double gotoHeight;
+	
     public Cmd_Elevator_Loop() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -25,11 +27,26 @@ public class Cmd_Elevator_Loop extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	
     	Robot.elevator.ElevatorManualMove(Robot.oi.getJoystick2());
 
-    	////Robot.rgbledCAN.LEDcyan();
+/*    	public double currPos = Robot.elevator.getPosition();
+    	
+    	if (currPos < gotoHeight) {
+    		stage1L.set(0.8);
+    	} else {
+    		if (currPos > gotoheight) {
+    			stage1L.set(-0.8);
+    		} else {
+    			stop
+    		}
+    	}
+  */  	
+    	
     	
     	SmartDashboard.putNumber("Elevator getPosition", Robot.elevator.getPosition());
+    	SmartDashboard.putNumber("Elevator getMotorOutputVoltage", Robot.elevator.getMotorOutputVoltage());
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -39,7 +56,7 @@ public class Cmd_Elevator_Loop extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	////Robot.rgbledCAN.LEDblue();
+    	Robot.elevator.Stage1Stop();
 
     }
 

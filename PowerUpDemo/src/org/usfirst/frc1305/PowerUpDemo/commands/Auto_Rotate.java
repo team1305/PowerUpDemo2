@@ -81,6 +81,7 @@ public class Auto_Rotate extends Command {
     	///Robot.driveTrain.driveTurn(0, (Robot.driveTrain.ahrs.getYaw() - m_AutoRotateAngle)  * 0.0215);
      	///Robot.driveTrain.driveTurn(0, (Math.sqrt(Robot.driveTrain.ahrs.getYaw() - m_AutoRotateAngle))  * 0.3);
        	//Robot.driveTrain.updateSmartDashboard();
+       	SmartDashboard.putNumber("NavX getYaw", Robot.navX.getYaw());
     }
 
     // Make this return true when this Command no longer needs to run execute()

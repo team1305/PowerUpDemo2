@@ -71,6 +71,7 @@ public class Robot extends IterativeRobot {
         rgbledCAN = new RGBledCAN();
         
         CameraServer.getInstance().startAutomaticCapture();
+        
         /**
          * Uses the CameraServer class to automatically capture video from a USB webcam
          * and send it to the FRC dashboard without doing any vision processing. This

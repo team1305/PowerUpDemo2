@@ -22,11 +22,6 @@ public class Auto_Finished extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    }
-
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-    	
     	Robot.drive.driveStop();
     	Robot.elevator.Stage1Stop();
     	Robot.intake.intakeOff();
@@ -34,7 +29,10 @@ public class Auto_Finished extends Command {
     	    	
        	Robot.rgbledCAN.LEDoff();
     	Robot.rgbledCAN.LEDred();
-    	
+    }
+
+    // Make this return true when this Command no longer needs to run execute()
+    protected boolean isFinished() {
         return true;
     }
 
